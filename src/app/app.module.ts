@@ -3,10 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ContentComponent } from './content/content.component';
+import { DataViewListComponent } from './data-view-list/data-view-list.component';
+import { DataViewDiagramComponent } from './data-view-diagram/data-view-diagram.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    ContentComponent,
+    DataViewListComponent,
+    DataViewDiagramComponent
   ],
   imports: [
     BrowserModule,
