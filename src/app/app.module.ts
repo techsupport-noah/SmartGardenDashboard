@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ContentComponent } from './content/content.component';
 import { DataViewListComponent } from './data-view-list/data-view-list.component';
 import { DataViewDiagramComponent } from './data-view-diagram/data-view-diagram.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { DataViewDiagramComponent } from './data-view-diagram/data-view-diagram.
     NavbarComponent,
     ContentComponent,
     DataViewListComponent,
-    DataViewDiagramComponent
+    DataViewDiagramComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-data-view-list',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class DataViewListComponent {
 
+  constructor(private route: ActivatedRoute){}
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      //console.log(params.get('dataType'));
+    });
+  }
+ 
 }
