@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ContentComponent } from './content/content.component';
+import { DataViewComponent } from './data-view/data-view.component';
 import { DataViewListComponent } from './data-view-list/data-view-list.component';
 import { DataViewDiagramComponent } from './data-view-diagram/data-view-diagram.component';
 import { HomeComponent } from './home/home.component';
@@ -13,7 +13,7 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    ContentComponent,
+    DataViewComponent,
     DataViewListComponent,
     DataViewDiagramComponent,
     HomeComponent
