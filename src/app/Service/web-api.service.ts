@@ -19,8 +19,7 @@ export class WebApiService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Cache-Control' : 'no-cache',
-        'Pragma' : 'no-cache'
+        //'Cache-Control' : 'no-cache'
       }),
       observe: "response" as 'body'
     };

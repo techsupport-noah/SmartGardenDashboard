@@ -2,7 +2,9 @@ import { state } from '@angular/animations';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, Subject, takeUntil } from 'rxjs';
+import { HttpProviderService } from '../Service/http-provider.service';
 import { RouteStateService } from '../Service/route-state.service';
+import { TestType } from '../types/test.type';
 
 @Component({
   selector: 'app-data-view-list',
@@ -13,8 +15,13 @@ import { RouteStateService } from '../Service/route-state.service';
 export class DataViewListComponent implements OnInit, OnDestroy {
 
   private destroySignal = new Subject<void>();
+  dataPoints : TestType[] = [];
 
-  constructor(private route: ActivatedRoute, private routeStateService : RouteStateService){}
+  constructor(
+    private route: ActivatedRoute,
+    private routeStateService : RouteStateService,
+    private httProvider : HttpProviderService    
+    ){}
 
   ngOnInit() : void {
     this.route.params.pipe(
@@ -23,6 +30,12 @@ export class DataViewListComponent implements OnInit, OnDestroy {
     .subscribe(params => {
       this.routeStateService.updateParameterState(params)
     })
+    this.httProvider.getTestdata().subscribe(data => {
+      if (data != null && data.body != null) {
+        this.dataPoints = <TestType[]>JSON.parse(JSON.stringify(data.body));
+      }
+    })
+
   }
 
   ngOnDestroy(): void {

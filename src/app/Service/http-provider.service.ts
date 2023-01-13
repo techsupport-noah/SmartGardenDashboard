@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { WebApiService } from './web-api.service';
 import { Observable } from 'rxjs';
 
-var apiUrl = "http://localhost:80/";
+var apiUrl = "http://localhost:80";
 
 var httpLink = {
   getTestdata: apiUrl + "/api/api.php?test=true",

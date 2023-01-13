@@ -8,6 +8,7 @@ import { DataViewComponent } from './data-view/data-view.component';
 import { DataViewListComponent } from './data-view-list/data-view-list.component';
 import { DataViewDiagramComponent } from './data-view-diagram/data-view-diagram.component';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,12 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+        
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
