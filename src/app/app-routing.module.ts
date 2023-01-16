@@ -13,13 +13,12 @@ const routes: Routes = [
     path: 'View',
     component:  DataViewComponent,
     children: [
-      { path: 'List/:title', component:  DataViewListComponent},
+      { path: 'List/:plantname/:dataname', component:  DataViewListComponent},
       { path: 'List', component:  DataViewListComponent},
       { path: 'Diagram/:title', component:  DataViewDiagramComponent},
       { path: 'Diagram', component:  DataViewDiagramComponent},
     ]
   },
-  
   { path: '*', component: HomeComponent},
 ];
 

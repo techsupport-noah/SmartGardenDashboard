@@ -2,19 +2,19 @@ SET @plantname = "Tester";
 
 
 SET @query = CONCAT("CREATE TABLE IF NOT EXISTS ",@plantname, "_Temperaturwerte (ID INT NOT NULL AUTO_INCREMENT,
-    Value INT NOT NULL, PRIMARY KEY(ID) )");
+    Value INT NOT NULL, Timepoint DATE NOT NULL, PRIMARY KEY(ID) )");
 PREPARE prepared FROM @query;
 
 EXECUTE prepared;
     
 SET @query = CONCAT("CREATE TABLE IF NOT EXISTS ",@plantname, "_Feuchtigkeitswerte (ID INT NOT NULL AUTO_INCREMENT,
-    Value INT NOT NULL, PRIMARY KEY(ID) )");
+    Value INT NOT NULL, Timepoint DATE NOT NULL, PRIMARY KEY(ID) )");
 PREPARE prepared FROM @query;
 
 EXECUTE prepared;
 
 SET @query = CONCAT("CREATE TABLE IF NOT EXISTS ",@plantname, "_Lichtwerte (ID INT NOT NULL AUTO_INCREMENT,
-    Value INT NOT NULL, PRIMARY KEY(ID) )");
+    Value INT NOT NULL, Timepoint DATE NOT NULL, PRIMARY KEY(ID) )");
 PREPARE prepared FROM @query;
 
 EXECUTE prepared;

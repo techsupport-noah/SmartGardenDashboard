@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { WebApiService } from './web-api.service';
 import { Observable } from 'rxjs';
+import { DatapointType } from '../types/datapoint.type';
 
 var apiUrl = "http://localhost:80";
 
 var httpLink = {
   getTestdata: apiUrl + "/api/api.php?test=true",
+  getData: apiUrl + "/api/api.php?"
 }
 
 @Injectable({
@@ -25,5 +27,9 @@ export class HttpProviderService {
   // }
   // public saveEmployee(model: any): Observable<any> {
   //   return this.webApiService.post(httpLink.saveEmployee, model);
-  // }  
+  // } 
+  public getValuesByName(plantname: string, dataname: string) : Observable<any> {
+    return this.webApiService.get(httpLink.getData + "query=" + plantname + "_" + dataname);    
+  }
+
 }   

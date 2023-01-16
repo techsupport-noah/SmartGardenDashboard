@@ -1,0 +1,17 @@
+SET @plantname = "Tester";
+
+
+SET @query = CONCAT("DROP TABLE IF EXISTS ",@plantname, "_temperaturwerte");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+    
+SET @query = CONCAT("DROP TABLE IF EXISTS ",@plantname, "_lichtwerte");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("DROP TABLE IF EXISTS ",@plantname, "_feuchtigkeitswerte");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;

@@ -3,13 +3,15 @@
     <thead class="table-dark">
         <tr class="center-align">
         <th>ID</th>
-        <th>Name</th>
-        </tr>
+        <th>Timepoint</th>
+        <th>Value</th>
+    </tr>
     </thead>
     <tbody>
         <tr *ngFor="let dataPoint of dataPoints" class="center-align">
             <td>{{ dataPoint.id }}</td>
-            <td>{{ dataPoint.name }}</td>
+            <td>{{ dataPoint.timepoint }}</td>
+            <td>{{ dataPoint.value }}</td>
         </tr>
         <!-- 
         <tr>
