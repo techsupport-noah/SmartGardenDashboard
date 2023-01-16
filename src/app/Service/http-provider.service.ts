@@ -28,8 +28,13 @@ export class HttpProviderService {
   // public saveEmployee(model: any): Observable<any> {
   //   return this.webApiService.post(httpLink.saveEmployee, model);
   // } 
+  
   public getValuesByName(plantname: string, dataname: string) : Observable<any> {
     return this.webApiService.get(httpLink.getData + "query=" + plantname + "_" + dataname);    
+  }
+
+  public getPlants() : Observable<any> {
+    return this.webApiService.get(httpLink.getData + "query=pflanzen");    
   }
 
 }   

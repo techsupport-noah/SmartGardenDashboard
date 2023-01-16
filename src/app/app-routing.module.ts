@@ -15,7 +15,7 @@ const routes: Routes = [
     children: [
       { path: 'List/:plantname/:dataname', component:  DataViewListComponent},
       { path: 'List', component:  DataViewListComponent},
-      { path: 'Diagram/:title', component:  DataViewDiagramComponent},
+      { path: 'Diagram/:plantname/:dataname', component:  DataViewDiagramComponent},
       { path: 'Diagram', component:  DataViewDiagramComponent},
     ]
   },

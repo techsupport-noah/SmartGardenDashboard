@@ -5,6 +5,7 @@ import { HttpProviderService } from '../Service/http-provider.service';
 import { RouteStateService } from '../Service/route-state.service';
 import { DatapointType } from '../types/datapoint.type';
 import { TestType } from '../types/test.type';
+import { Plant } from '../types/plant.type';
 
 @Component({
   selector: 'app-data-view-list',
@@ -29,14 +30,14 @@ export class DataViewListComponent implements OnInit, OnDestroy {
       takeUntil(this.destroySignal)
       )
     .subscribe(params => {
-      this.routeStateService.updateParameterState(params)
+      this.routeStateService.updateParameterState(params);
+      this.routeStateService.updateCurrentPage("View/List");
     })
     
     this.update(
       this.route.snapshot.paramMap.get("plantname") as string,
       this.route.snapshot.paramMap.get("dataname") as string
     );
-
   }
 
   ngOnDestroy(): void {

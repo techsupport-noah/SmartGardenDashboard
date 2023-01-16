@@ -34,7 +34,7 @@ $dbname = "se";
     if(isset($_GET["query"])){
 
         //check if query is valid
-            $allowed = ['/([a-z0-9]*)feuchtigkeitswerte/','/([a-z0-9]*)temperaturwerte/','/([a-z0-9]*)lichtwerte/'];
+            $allowed = ['/pflanzen/','/([a-z0-9]*)feuchtigkeitswerte/','/([a-z0-9]*)temperaturwerte/','/([a-z0-9]*)lichtwerte/'];
             $flag = 0; 
             foreach($allowed as &$element){
                 if(preg_match($element, $_GET["query"]) === 1){
@@ -63,10 +63,19 @@ $dbname = "se";
                 return get_object_vars($this);
             }
         }
+        class Plant {
+            private $id;
+            private $name;
+            public function __construct($id, $name){
+                $this->id = $id;
+                $this->name = $name;
+            }
+            public function expose() {
+                return get_object_vars($this);
+            }
+        }
 
         //make db connection
-            //connect to mysql server
-            
 
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);
@@ -77,25 +86,25 @@ $dbname = "se";
             }
         //create query
         $query = "SELECT * FROM  ". $_GET["query"];
-           // echo $query;
+           //echo $query;
             
         $data = array();
 
         if($result = $conn->query($query)){
              //create data 
-            while ($obj = $result->fetch_object()) {
-                array_push($data, (new Datapoint($obj->ID, $obj->Timepoint, $obj->Value))->expose());
+            if($_GET["query"]=="pflanzen"){
+                while ($obj = $result->fetch_object()) {
+                    array_push($data, (new Plant($obj->ID, $obj->Name))->expose());
+                } 
+            }else{
+                while ($obj = $result->fetch_object()) {
+                    array_push($data, (new Datapoint($obj->ID, $obj->Timepoint, $obj->Value))->expose());
+                }
             }
             $result->free_result();
         }
 
-        $conn->close();
-
-        
-    
-       //$data[0] = (new Datapoint("28. Februar 2022", 1))->expose();
-        //$data[1] = (new Datapoint("29. Februar 2022", 1))->expose();
-        
+        $conn->close(); 
         
         echo json_encode($data);
     }

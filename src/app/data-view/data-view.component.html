@@ -4,15 +4,17 @@
             <h4><b>Datenansicht</b></h4>
         </div>
         <div class="col">
-            <select [(ngModel)]="plantNameSelect" class="form-select">
+            <select title="Auswahl Plfanze" [(ngModel)]="plantNameSelect"  class="form-select">
                 <option value="default">Pflanze auswählen.</option>
+                <option *ngFor="let plant of plants" value={{plant.name}}> {{plant.name}} </option>
+                <!-- <option value="default">Pflanze auswählen.</option>
                 <option value="pflanze_1">Pflanze_1</option>
                 <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option value="3">Three</option> -->
             </select>
         </div>
         <div class="col">
-            <select [(ngModel)]="dataTypeSelect" class="form-select">
+            <select title="Auswahl Daten" [(ngModel)]="dataTypeSelect" class="form-select">
                 <option value="default">Datentyp auswählen.</option>
                 <option value="temperaturwerte">Temperatur</option>
                 <option value="feuchtigkeitswerte">Feuchtigkeit</option>

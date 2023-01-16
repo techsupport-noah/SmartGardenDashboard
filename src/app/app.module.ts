@@ -10,6 +10,7 @@ import { DataViewDiagramComponent } from './data-view-diagram/data-view-diagram.
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
         
