@@ -7,9 +7,10 @@ var apiUrl = "http://localhost:80";
 
 var httpLink = {
   getTestdata: apiUrl + "/api/api.php?test=true",
-  getData: apiUrl + "/api/api.php?"
+  getData: apiUrl + "/api/api.php?",
+  addPlant: apiUrl + "/api/api.php?createPlant=true",
+  deletePlant: apiUrl + "/api/api.php?deletePlant=true",
 }
-
 @Injectable({
   providedIn: 'root'
 })
@@ -35,6 +36,14 @@ export class HttpProviderService {
 
   public getPlants() : Observable<any> {
     return this.webApiService.get(httpLink.getData + "query=pflanzen");    
+  }
+
+  public addPlant(plantname: string) : Observable<any> {
+    return this.webApiService.post(httpLink.addPlant, plantname);
+  }
+
+  public deletePlant(plantname: string) : Observable<any> {
+    return this.webApiService.post(httpLink.deletePlant, plantname);
   }
 
 }   

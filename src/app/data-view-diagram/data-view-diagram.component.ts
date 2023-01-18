@@ -5,7 +5,7 @@ import { HttpProviderService } from '../Service/http-provider.service';
 import { DatapointType } from '../types/datapoint.type';
 import { Subject, takeUntil } from 'rxjs';
 import { Chart } from 'chart.js/auto';
-
+import zoomPlugin from 'chartjs-plugin-zoom';
 
 @Component({
   selector: 'app-data-view-diagram',
@@ -22,7 +22,9 @@ export class DataViewDiagramComponent implements OnInit, OnDestroy{
     private routeStateService : RouteStateService,
     private changeDetectorRef : ChangeDetectorRef,
     private httProvider : HttpProviderService    
-    ){}
+    ){
+      Chart.register(zoomPlugin);
+    }
 
   ngOnInit() : void {
     this.route.params.pipe(
@@ -50,6 +52,7 @@ export class DataViewDiagramComponent implements OnInit, OnDestroy{
   update(plantname: string , dataname: string ) {
     if(plantname == "default" || plantname == null || dataname == "default" || dataname == null){
       this._dataPoints = [];
+      this.createEmptyChart();
       return;
     }
     this.httProvider.getValuesByName(plantname, dataname).subscribe(data => {
@@ -59,6 +62,31 @@ export class DataViewDiagramComponent implements OnInit, OnDestroy{
         this.createChart();
       }
     })
+  }
+
+  createEmptyChart(){
+    var y_vals : number[] = [];
+    var x_vals : string[] = [];
+
+    this.chart = new Chart("MyChart", {
+      type: 'line', //this denotes tha type of chart
+
+      data: {// values on X-Axis
+        labels: x_vals, 
+        datasets: [
+        {
+          label: "Daten",
+          data: y_vals,
+          backgroundColor: '#2596be'
+        },
+        ]
+      },
+      options: {
+        aspectRatio:2.5,
+
+      }
+      
+    });
   }
 
   createChart(){
@@ -79,13 +107,26 @@ export class DataViewDiagramComponent implements OnInit, OnDestroy{
         {
           label: "Daten",
           data: y_vals,
-          backgroundColor: 'blue'
+          backgroundColor: '#2596be'
         },
         ]
       },
       options: {
         aspectRatio:2.5,
-
+        plugins: {
+          zoom: {
+            zoom: {
+              wheel: {
+                enabled: true,
+                speed: 0.01
+              },
+              pinch: {
+                enabled: true
+              },
+              mode: 'x',
+            }
+          }
+        }
       }
       
     });

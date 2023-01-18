@@ -10,6 +10,93 @@ $dbname = "se";
     header("Pragma: undefined");
     header('Content-Type: application/json');
     
+
+
+
+    //check if request method is post
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        //check if createPlant isset
+        if (isset($_GET["createPlant"])) {
+            $plantname = file_get_contents('php://input');
+        
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            
+            $sql = "INSERT IGNORE INTO pflanzen (
+                ID, Name
+                ) VALUES (
+                NULL, '$plantname'
+            )";
+
+            $sql_1 = "CREATE TABLE IF NOT EXISTS " . $plantname . "_feuchtigkeitswerte (
+                ID INT NOT NULL AUTO_INCREMENT,
+                Value INT NOT NULL,
+                Timepoint DATE NOT NULL,
+                PRIMARY KEY(ID) 
+            )";
+            $sql_2 = "CREATE TABLE IF NOT EXISTS " . $plantname . "_lichtwerte (
+                ID INT NOT NULL AUTO_INCREMENT,
+                Value INT NOT NULL,
+                Timepoint DATE NOT NULL,
+                PRIMARY KEY(ID) 
+            )";
+            $sql_3 = "CREATE TABLE IF NOT EXISTS " . $plantname . "_temperaturwerte (
+                ID INT NOT NULL AUTO_INCREMENT,
+                Value INT NOT NULL,
+                Timepoint DATE NOT NULL,
+                PRIMARY KEY(ID) 
+            )";
+
+            //execute all querys
+            $result = $conn->query($sql);
+            $result_1 = $conn->query($sql_1);
+            $result_2 = $conn->query($sql_2);
+            $result_3 = $conn->query($sql_3);
+
+            //return success to post request
+            echo json_encode(array(
+                "success" => true
+            ));
+        } 
+        
+        if(isset($_GET['deletePlant'])){
+
+            $plantname = file_get_contents('php://input');
+        
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            
+            $sql = "DELETE FROM pflanzen WHERE Name='$plantname'";
+
+            $sql_1 = "DROP TABLE IF EXISTS " . $plantname . "_feuchtigkeitswerte";
+            $sql_2 = "DROP TABLE IF EXISTS " . $plantname . "_lichtwerte";
+            $sql_3 = "DROP TABLE IF EXISTS " . $plantname . "_temperaturwerte";
+
+            //execute all querys
+            $result = $conn->query($sql);
+            $result_1 = $conn->query($sql_1);
+            $result_2 = $conn->query($sql_2);
+            $result_3 = $conn->query($sql_3);
+
+            //return success to post request
+            echo json_encode(array(
+                "success" => true
+            ));
+
+        }
+        
+    }
+
     if(isset($_GET["test"])){
         class Testdata {
             private $id;

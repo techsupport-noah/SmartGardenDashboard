@@ -5,6 +5,7 @@ import { Route, Router, RouterOutlet } from '@angular/router';
 import { DataViewListComponent } from '../data-view-list/data-view-list.component';
 import { HttpProviderService } from '../Service/http-provider.service';
 import { Plant } from '../types/plant.type';
+import { UploadDataCompletedEventArgsDescriptionMetadata } from 'igniteui-angular-core';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class DataViewComponent implements OnInit {
   plantNameSelect : any = "";
   plants : Plant[] = [];
   page : string = "";
+  reloadFlag : boolean = false;
 
   constructor(
     private routeState: RouteStateService,
@@ -54,6 +56,7 @@ export class DataViewComponent implements OnInit {
         this.plantNameSelect = parameters["plantname"];
       }
       this.changeDetectorRef.detectChanges(); //update view as this subscription is async
+   
     })
    
     this.routeState.page.pipe(
@@ -86,8 +89,6 @@ export class DataViewComponent implements OnInit {
       this.router.navigate([this.page, this.plantNameSelect, this.dataTypeSelect])
     );
   }
-
-
 }
 
 

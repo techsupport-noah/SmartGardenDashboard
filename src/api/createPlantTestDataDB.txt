@@ -1,0 +1,175 @@
+SET @plantname = "Tester";
+
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '26', '2023-01-18')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+    
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '27', '2023-01-19')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '26', '2023-01-20')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '28', '2023-01-21')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+    
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '27', '2023-01-22')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '26', '2023-01-23')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '25', '2023-01-24')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+    
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '26', '2023-01-25')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '26', '2023-01-26')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '25', '2023-01-27')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '27', '2023-01-28')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+    
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '26', '2023-01-29')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '26', '2023-01-30')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '26', '2023-01-31')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+    
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '25', '2023-02-01')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_temperaturwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '26', '2023-02-02')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Feuchtigkeitswerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '50', '2023-01-03')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Feuchtigkeitswerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '51', '2023-01-04')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Feuchtigkeitswerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '52', '2023-01-05')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Feuchtigkeitswerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '50', '2023-01-06')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Feuchtigkeitswerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '55', '2023-01-07')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Feuchtigkeitswerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '54', '2023-01-08')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Feuchtigkeitswerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '53', '2023-01-09')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Feuchtigkeitswerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '55', '2023-01-10')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Feuchtigkeitswerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '52', '2023-01-11')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+    
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Lichtwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '50', '2023-01-03')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Lichtwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '51', '2023-01-04')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Lichtwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '52', '2023-01-05')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Lichtwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '50', '2023-01-06')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Lichtwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '55', '2023-01-07')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Lichtwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '54', '2023-01-08')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Lichtwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '53', '2023-01-09')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Lichtwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '55', '2023-01-10')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+
+SET @query = CONCAT("INSERT INTO ",@plantname, "_Lichtwerte (`ID`, `Value`, `Timepoint`) VALUES (NULL, '52', '2023-01-11')");
+PREPARE prepared FROM @query;
+
+EXECUTE prepared;
+    

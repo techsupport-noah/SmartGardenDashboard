@@ -1,1 +1,82 @@
-<p>home works!</p>
+<div class="col-12">
+    <div class="row py-2">
+        <div class="text-center col-6">
+            <div class="card">
+                <h4 class="card-header text-center">Pflanzen Übersicht</h4>
+                <div class="card-body">
+                    <p class="card-text">Diese Übersicht zeigt alle aktuell im System hinterlegten Pflanzen.</p>
+                    <div class="table-responsive px-5">
+                        <table class="table table-hover table-bordered table-content">
+                            <thead class="table-primary">
+                                <tr class="center-align">
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let plant of plants" class="center-align">
+                                    <td>{{ plant.id }}</td>
+                                    <td>{{ plant.name }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center col-6">
+            <div class="card">
+                <h4 class="card-header text-center">Parameter Übersicht</h4>
+                <div class="card-body">
+                    <p class="card-text">Diese Übersicht zeigt alle aktuell vom System überwachten Parameter.</p>
+                    <div class="table-responsive px-5">
+                        <table class="table table-hover table-bordered table-content">
+                            <thead class="table-primary">
+                                <tr class="center-align">
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Temperatur</td>
+                                </tr>
+                                <tr>
+                                    <td>Feuchtigkeit (Boden)</td>
+                                </tr>
+                                <tr>
+                                    <td>Licht</td>
+                                </tr>   
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="text-center col-6">
+            <div class="card">
+                <h4 class="card-header text-center">Pflanze erzeugen</h4>
+                <div class="card-body">
+                    <p class="card-text">Diese Übersicht ermöglicht das Anlegen von neuen Pflanzen im System.</p>
+                    <div class="input-group px-5">
+                        <input placeholder="Pflanzenname" title="Auswahl Pflanzenname" type="text" class="form-control input" [(ngModel)]="plantNameAddInput">
+                        <button class="btn btn-primary" type="button" (click)="addPlant()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <div class="text-center col-6">
+            <div class="card">
+                <h4 class="card-header text-center">Pflanze löschen</h4>
+                <div class="card-body">
+                    <p class="card-text">Diese Übersicht ermöglicht das Löschen von hinterlegten Pflanzen.</p>
+                    <div class="input-group px-5">
+                        <input placeholder="Pflanzenname" title="Auswahl Pflanzenname" type="text" class="form-control input" [(ngModel)]="plantNameDeleteInput">
+                        <button class="btn btn-primary" type="button" (click)="deletePlant()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>

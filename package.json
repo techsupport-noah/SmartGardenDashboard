@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host=127.0.0.1",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -22,6 +22,7 @@
     "@types/d3": "^7.4.0",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.1.2",
+    "chartjs-plugin-zoom": "^2.0.0",
     "igniteui-angular-core": "^15.0.0",
     "ngx-bootstrap": "^6.2.0",
     "rxjs": "~7.5.0",
