@@ -1,5 +1,5 @@
 CREATE TABLE pflanzen(
     `ID` INT NOT NULL AUTO_INCREMENT,
     `Name` VARCHAR(50) NOT NULL,
-    PRIMARY KEY (`ID`)
+    PRIMARY KEY (`ID`),
     UNIQUE KEY (`Name`))

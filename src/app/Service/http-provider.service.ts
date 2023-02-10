@@ -3,7 +3,7 @@ import { WebApiService } from './web-api.service';
 import { Observable } from 'rxjs';
 import { DatapointType } from '../types/datapoint.type';
 
-var apiUrl = "http://localhost:80";
+var apiUrl = "https://onlinevault.de";
 
 var httpLink = {
   getTestdata: apiUrl + "/api/api.php?test=true",

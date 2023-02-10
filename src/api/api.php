@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost:3306";
-$username = "Noah";
-$password = "passwort";
-$dbname = "se";
+$servername = "10.35.47.31:3306";
+$username = "k126970_se";
+$password = "Slor87@26";
+$dbname = "k126970_se";
 
     header('Access-Control-Allow-Origin: *');
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
@@ -13,111 +13,86 @@ $dbname = "se";
 
 
 
-    //check if request method is post
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        //check if createPlant isset
-        if (isset($_GET["createPlant"])) {
-            $plantname = file_get_contents('php://input');
-        
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            
-            $sql = "INSERT IGNORE INTO pflanzen (
-                ID, Name
-                ) VALUES (
-                NULL, '$plantname'
-            )";
-
-            $sql_1 = "CREATE TABLE IF NOT EXISTS " . $plantname . "_feuchtigkeitswerte (
-                ID INT NOT NULL AUTO_INCREMENT,
-                Value INT NOT NULL,
-                Timepoint DATE NOT NULL,
-                PRIMARY KEY(ID) 
-            )";
-            $sql_2 = "CREATE TABLE IF NOT EXISTS " . $plantname . "_lichtwerte (
-                ID INT NOT NULL AUTO_INCREMENT,
-                Value INT NOT NULL,
-                Timepoint DATE NOT NULL,
-                PRIMARY KEY(ID) 
-            )";
-            $sql_3 = "CREATE TABLE IF NOT EXISTS " . $plantname . "_temperaturwerte (
-                ID INT NOT NULL AUTO_INCREMENT,
-                Value INT NOT NULL,
-                Timepoint DATE NOT NULL,
-                PRIMARY KEY(ID) 
-            )";
-
-            //execute all querys
-            $result = $conn->query($sql);
-            $result_1 = $conn->query($sql_1);
-            $result_2 = $conn->query($sql_2);
-            $result_3 = $conn->query($sql_3);
-
-            //return success to post request
-            echo json_encode(array(
-                "success" => true
-            ));
-        } 
-        
-        if(isset($_GET['deletePlant'])){
-
-            $plantname = file_get_contents('php://input');
-        
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            
-            $sql = "DELETE FROM pflanzen WHERE Name='$plantname'";
-
-            $sql_1 = "DROP TABLE IF EXISTS " . $plantname . "_feuchtigkeitswerte";
-            $sql_2 = "DROP TABLE IF EXISTS " . $plantname . "_lichtwerte";
-            $sql_3 = "DROP TABLE IF EXISTS " . $plantname . "_temperaturwerte";
-
-            //execute all querys
-            $result = $conn->query($sql);
-            $result_1 = $conn->query($sql_1);
-            $result_2 = $conn->query($sql_2);
-            $result_3 = $conn->query($sql_3);
-
-            //return success to post request
-            echo json_encode(array(
-                "success" => true
-            ));
-
-        }
-        
-    }
-
-    if(isset($_GET["test"])){
-        class Testdata {
-            private $id;
-            private $name;
-            public function __construct($ErrorID, $ErrorName){
-                $this->id = $ErrorID;
-                $this->name = $ErrorName;
-            }
-            public function expose() {
-                return get_object_vars($this);
-            }
-        }
+    //check if createPlant isset
+    if (isset($_GET["createPlant"])) {
+        $plantname = file_get_contents('php://input');
     
-        $data[0] = (new Testdata(1, "Test"))->expose();
-        $data[1] = (new Testdata(2, "Test"))->expose();
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
         
+        $sql = "INSERT IGNORE INTO pflanzen (
+            ID, Name
+            ) VALUES (
+            NULL, '$plantname'
+        )";
+
+        $sql_1 = "CREATE TABLE IF NOT EXISTS " . $plantname . "_feuchtigkeitswerte (
+            ID INT NOT NULL AUTO_INCREMENT,
+            Value INT NOT NULL,
+            Timepoint DATE NOT NULL,
+            PRIMARY KEY(ID) 
+        )";
+        $sql_2 = "CREATE TABLE IF NOT EXISTS " . $plantname . "_lichtwerte (
+            ID INT NOT NULL AUTO_INCREMENT,
+            Value INT NOT NULL,
+            Timepoint DATE NOT NULL,
+            PRIMARY KEY(ID) 
+        )";
+        $sql_3 = "CREATE TABLE IF NOT EXISTS " . $plantname . "_temperaturwerte (
+            ID INT NOT NULL AUTO_INCREMENT,
+            Value INT NOT NULL,
+            Timepoint DATE NOT NULL,
+            PRIMARY KEY(ID) 
+        )";
+
+        //execute all querys
+        $result = $conn->query($sql);
+        $result_1 = $conn->query($sql_1);
+        $result_2 = $conn->query($sql_2);
+        $result_3 = $conn->query($sql_3);
+
+        //return success to post request
+        echo json_encode(array(
+            "success" => true
+        ));
+    } 
+    
+    if(isset($_GET['deletePlant'])){
+
+        $plantname = file_get_contents('php://input');
+    
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
         
-        echo json_encode($data);
+        $sql = "DELETE FROM pflanzen WHERE Name='$plantname'";
+
+        $sql_1 = "DROP TABLE IF EXISTS " . $plantname . "_feuchtigkeitswerte";
+        $sql_2 = "DROP TABLE IF EXISTS " . $plantname . "_lichtwerte";
+        $sql_3 = "DROP TABLE IF EXISTS " . $plantname . "_temperaturwerte";
+
+        //execute all querys
+        $result = $conn->query($sql);
+        $result_1 = $conn->query($sql_1);
+        $result_2 = $conn->query($sql_2);
+        $result_3 = $conn->query($sql_3);
+
+        //return success to post request
+        echo json_encode(array(
+            "success" => true
+        ));
 
     }
-
+        
     if(isset($_GET["query"])){
 
         //check if query is valid
@@ -128,7 +103,6 @@ $dbname = "se";
                     $flag = 1;
                     break;
                 }
-                
             }
             if($flag===0){
                 //didn't match any expressions
@@ -195,6 +169,71 @@ $dbname = "se";
         
         echo json_encode($data);
     }
+
+    if(isset($_GET['upload'])){
+
+        $plantname = $_GET['plantname'];
+
+        $value_temp = $_GET['value_temp'];
+        $value_humid = $_GET['value_humid'];
+        $value_light = $_GET['value_light'];
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        
+        $sql_1 = "INSERT INTO " . $plantname . "_feuchtigkeitswerte (
+            ID, Value, Timepoint
+            ) VALUES (
+            NULL, '$value_humid', NOW()
+        )";
+        $sql_2 = "INSERT INTO " . $plantname . "_temperaturwerte (
+            ID, Value, Timepoint
+            ) VALUES (
+            NULL, '$value_temp', NOW()
+        )";
+        $sql_3 = "INSERT INTO " . $plantname . "_lichtwerte (
+            ID, Value, Timepoint
+            ) VALUES (
+            NULL, '$value_light', NOW()
+        )";
+
+        //execute all querys
+        $result_1 = $conn->query($sql_1);
+        $result_2 = $conn->query($sql_2);
+        $result_3 = $conn->query($sql_3);
+
+        //return success to post request
+        echo json_encode(array(
+            "success" => true
+        ));
+    }
+
+    if(isset($_GET["test"])){
+        class Testdata {
+            private $id;
+            private $name;
+            public function __construct($ErrorID, $ErrorName){
+                $this->id = $ErrorID;
+                $this->name = $ErrorName;
+            }
+            public function expose() {
+                return get_object_vars($this);
+            }
+        }
+    
+        $data[0] = (new Testdata(1, "Test"))->expose();
+        $data[1] = (new Testdata(2, "Test"))->expose();
+        
+        
+        echo json_encode($data);
+
+    }
+
 
    
 ?>

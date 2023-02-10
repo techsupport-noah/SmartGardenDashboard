@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
           //check post answer
           if (data.body.success == true) {
             //reload page
-            //window.location.reload();
+            window.location.reload();
           }
         }
       })
