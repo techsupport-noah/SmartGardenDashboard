@@ -15,7 +15,7 @@ $dbname = "k126970_se";
 
     //check if createPlant isset
     if (isset($_GET["createPlant"])) {
-        $plantname = file_get_contents('php://input');
+        $plantname = checkParameter(file_get_contents('php://input'));
     
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -64,7 +64,7 @@ $dbname = "k126970_se";
     
     if(isset($_GET['deletePlant'])){
 
-        $plantname = file_get_contents('php://input');
+        $plantname = checkParameter(file_get_contents('php://input'));
     
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -95,11 +95,13 @@ $dbname = "k126970_se";
         
     if(isset($_GET["query"])){
 
+        $QUERY_PARAM = checkParameter($_GET["query"]);
+
         //check if query is valid
             $allowed = ['/pflanzen/','/([a-z0-9]*)feuchtigkeitswerte/','/([a-z0-9]*)temperaturwerte/','/([a-z0-9]*)lichtwerte/'];
             $flag = 0; 
             foreach($allowed as &$element){
-                if(preg_match($element, $_GET["query"]) === 1){
+                if(preg_match($element, $QUERY_PARAM) === 1){
                     $flag = 1;
                     break;
                 }
@@ -146,7 +148,7 @@ $dbname = "k126970_se";
                 die("Connection failed: " . $conn->connect_error);
             }
         //create query
-        $query = "SELECT * FROM  ". $_GET["query"];
+        $query = "SELECT * FROM  ". $QUERY_PARAM;
            //echo $query;
             
         $data = array();
@@ -172,11 +174,13 @@ $dbname = "k126970_se";
 
     if(isset($_GET['upload'])){
 
-        $plantname = $_GET['plantname'];
+        $plantname = checkParameter($_GET['plantname']);
 
-        $value_temp = $_GET['value_temp'];
-        $value_humid = $_GET['value_humid'];
-        $value_light = $_GET['value_light'];
+        $value_temp = checkParameter($_GET['value_temp']);
+        $value_humid = checkParameter($_GET['value_humid']);
+        $value_light = checkParameter($_GET['value_light']);
+
+        
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -235,5 +239,31 @@ $dbname = "k126970_se";
     }
 
 
+    //create function to check a parameter for sql injection
+    function checkParameter($param){
+        $param = stripslashes($param);
+        $param = htmlspecialchars($param);
+        $param = trim($param);
+
+        //check values if the vars contain any xss related keywords
+        $xss = array("script", "alert", "onload", "onerror", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onkeydown", "onkeyup", "onkeypress", "onblur", "onchange", "onfocus", "onreset", "onselect", "onsubmit", "onabort", "onbeforeunload", "onerror", "onhashchange", "onload", "onpageshow", "onpagehide", "onresize", "onscroll", "onunload", "onmessage", "onconnect", "onopen", "onmessage", 
+        //check if the vars contain any sql related keywords
+        "select", "insert", "update", "delete", "drop", "alter", "create", "table", "from", "where", "not", "like", "between", "null", "group", "by", "order", "asc", "desc", "having", "limit", "offset", "union", "into", "values", "set", "truncate", "primary", "key", "foreign", "references", "default", "auto_increment", "index", "unique", "constraint", "check", "collate", "character", "set", "database", "schema", "procedure", "function", "trigger", "view", "grant", "revoke", "begin", "commit", "rollback", "savepoint", "lock", "unlock", "start", "transaction", "declare", "case", "when", "then", "else", "end", "if", "else", "elseif", "endif", "iterate", "leave", "loop", "repeat", "until", "while", "open", "close", "fetch", "cursor", "declare", "handler", "condition", "signal", "get", "diag", "row_count", "found", "not_found", "last_insert_id", "sqlstate", "warning", "exception", "show", "explain", "desc", "pragma", "pragma", "table_info", "index_list", "index_info", "collation_list", "collation", "foreign_key_list", "trigger_list", "trigger", "view_list", "view", "table", "column", "index", "trigger", "view", "pragma", "foreign_key", "database", "schema", "table");
+
+        $flag = 0;
+        foreach($xss as &$element){
+            if(preg_match("/" . $element . "/", $param) === 1){
+                $flag = 1;
+                break;
+            }
+        }
+        
+        if($flag===0){
+            //didn't match any expressions
+            exit("Don't try injecting sql please. :( ");
+        }
+
+        return $param;
+    }
    
 ?>
